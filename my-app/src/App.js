@@ -48,6 +48,19 @@ function Article(props){
   )
 }
 
+function Create() {
+  return (
+    <article>
+      <h2>Create</h2>
+      <form>
+        <p><input type='text' name='title' placeholder='title'/></p>
+        <p><textarea  name='body' placeholder='body'></textarea></p>
+        <p><input type='submit' value='Create'></input></p>
+      </form>
+    </article>
+  )
+}
+
 function App() {
 
   //아래의 mode, setMode는 마음대로 작명 가능
@@ -74,18 +87,29 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
+  } else if(mode === 'CREATE'){
+    content = <Create></Create>
   }
 
   return (
     <div>
+      {/* Header */}
       <Header title="WEB" onChangeMode={()=>{
         setMode('WELCOME');
       }}></Header>
+      {/* Nav */}
       <Nav topics={topics} onChangeMode={(_id)=>{
         setMode('READ');
         setId(_id);
       }}></Nav>
+      {/* Content */}
       {content}
+      {/* Create */}
+      <a href="/create" onClick={event=>{
+        event.preventDefault();
+        setMode('CREATE');
+      }}>Create</a>
+
     </div>
   );
 }
