@@ -50,7 +50,7 @@ function Article(props){
 function App() {
 
   //아래의 mode, setMode는 마음대로 작명 가능
-  //useState() 의 0번째 는 getter, 1번째는 setter
+  //useState() 의 0번째 는 원소의 값, 1번째는 setter
   const [mode, setMode] = useState('WELCOME');
 
   const topics = [
