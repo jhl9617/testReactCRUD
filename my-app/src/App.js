@@ -22,9 +22,10 @@ function Nav(props) {
 
   for(let i=0; i < props.topics.length; i++){
     let t = props.topics[i];
+    //태그 안의 속성으로 넘기면 문자열임(event.target.id는 문자열) 형변환 필요
     lis.push(<li key={t.id}><a id={t.id} href={'/read/'+t.id} onClick={event=>{
       event.preventDefault();
-      props.onChangeMode(event.target.id);
+      props.onChangeMode(Number(event.target.id));
     }}>{t.title}</a></li>);
   }
   return(
@@ -37,8 +38,8 @@ function Nav(props) {
 }
 
 function Article(props){
-
   
+
   return (
     <article>
         <h2>{props.title}</h2>
@@ -52,6 +53,7 @@ function App() {
   //아래의 mode, setMode는 마음대로 작명 가능
   //useState() 의 0번째 는 원소의 값, 1번째는 setter
   const [mode, setMode] = useState('WELCOME');
+  const [id, setId] = useState(null);
 
   const topics = [
     {id:1, title:'html', body:'html is ...'},
@@ -63,7 +65,15 @@ function App() {
   if(mode === 'WELCOME') {
     content = <Article title="Welcome" body="Hello, Web"></Article>
   } else if(mode === 'READ') {
-    content = <Article title="Welcome" body="Hello, Read"></Article>
+    let title, body = null;
+    for(let i = 0; i < topics.length; i++) {
+      console.log(topics[i].id, id);
+      if(topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>
   }
 
   return (
@@ -71,8 +81,9 @@ function App() {
       <Header title="WEB" onChangeMode={()=>{
         setMode('WELCOME');
       }}></Header>
-      <Nav topics={topics} onChangeMode={(id)=>{
+      <Nav topics={topics} onChangeMode={(_id)=>{
         setMode('READ');
+        setId(_id);
       }}></Nav>
       {content}
     </div>
