@@ -100,6 +100,11 @@ function App() {
       newTopics.push(newTopic);
       setTopics(newTopics);
 
+      //읽기 페이지로 이동
+      setMode('READ');
+      setId(nextId);
+      setNextId(nextId+1);
+
     }}></Create>
   }
 
