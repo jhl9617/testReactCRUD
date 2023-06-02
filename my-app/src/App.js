@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 
 // 사용자 정의 태그
 function Header(props) {
@@ -23,7 +24,7 @@ function Nav(props) {
     let t = props.topics[i];
     lis.push(<li key={t.id}><a id={t.id} href={'/read/'+t.id} onClick={event=>{
       event.preventDefault();
-      props.onChangeMode2(event.target.id);
+      props.onChangeMode(event.target.id);
     }}>{t.title}</a></li>);
   }
   return(
@@ -48,7 +49,7 @@ function Article(props){
 
 function App() {
 
-  const mode = 'WELCOME';
+  const [mode, setMode] = useState('WELCOME');
 
   const topics = [
     {id:1, title:'html', body:'html is ...'},
@@ -66,10 +67,10 @@ function App() {
   return (
     <div>
       <Header title="WEB" onChangeMode={()=>{
-        alert('Header경고임');
+        setMode('WELCOME');
       }}></Header>
-      <Nav topics={topics} onChangeMode2={(id)=>{
-        alert(id);
+      <Nav topics={topics} onChangeMode={(id)=>{
+        setMode('READ');
       }}></Nav>
       {content}
     </div>
