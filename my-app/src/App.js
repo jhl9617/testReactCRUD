@@ -1,24 +1,67 @@
 import logo from './logo.svg';
 import './App.css';
 
+// 사용자 정의 태그
+function Header() {
+    return (
+      <header>
+        <h1><a href='/'>React</a></h1>
+      </header>
+    )
+}
+
+function Nav() {
+  return(
+    <nav>
+        <ol>
+          <li><a href="/read/1">html</a></li>
+          <li><a href="/read/2">css</a></li>
+          <li><a href="/read/3">javascript</a></li>
+        </ol>
+      </nav>
+  )
+}
+
+
+function Article(){
+  return (
+    <article>
+        <h2>Welcome</h2>
+        Hello, web
+    </article>
+  )
+}
+
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      Hello world!
+      
+      {/* header */}
+      {/* <header>
+        <h1><a href='/'>web</a></h1>
+      </header> */}
+      
+      {/* nav */}
+      {/* <nav>
+        <ol>
+          <li><a href="/read/1">html</a></li>
+          <li><a href="/read/2">css</a></li>
+          <li><a href="/read/3">javascript</a></li>
+        </ol>
+      </nav> */}
+      
+      {/* article */}
+      {/* <article>
+        <h2>Welcome</h2>
+        Hello, web
+      </article> */}
+
+      <Header></Header>
+      <Nav></Nav>
+      <Article></Article>
+
+
     </div>
   );
 }
